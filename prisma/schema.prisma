@@ -18,3 +18,9 @@ model User {
   name      String?
   createdAt DateTime @default(now())
 }
+model News {
+  id        Int      @id @default(autoincrement())
+  news_title      String?
+  news_desc    String
+  createdAt DateTime @default(now())
+}
