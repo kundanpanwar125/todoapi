@@ -36,4 +36,36 @@ const details = async(req,res)=>{
     }
 }
 
-module.exports={read,create,details}
+const update = async(req,res) => {
+
+    try {
+        await prisma.News.update({
+            where:{
+                id: parseInt(req.params.id)
+            },
+            data: req.body
+        })
+        res.send({
+            msg:"Update..!"
+        })
+    } catch (error) {
+        res.send(error)
+    }
+}
+
+const destroy = async (req,res) =>{
+
+    try {
+        await prisma.News.delete({
+            where:{
+                id:parseInt(req.params.id)  
+            }
+        })
+        res.send({
+            msg:"Success..! Deleted..!"
+        })
+    } catch (error) {
+        res.send(error)
+    }
+}
+module.exports={read,create,details,update,destroy}
